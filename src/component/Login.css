@@ -1,0 +1,24 @@
+.container{
+    background-color: rgb(241, 239, 239);
+    height: 350px;
+    width: 350px;
+    margin: 50px auto;
+    border-radius: 20px;
+}
+.heading{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.textfield{
+    display: flex;
+    justify-content: center;
+}
+.main{
+    display: flex;
+    justify-content: center;
+}
+.loginbutton{
+    display: flex;
+    justify-content: center;
+}
