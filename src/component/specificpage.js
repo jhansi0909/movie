@@ -3,10 +3,6 @@ import icon from "./icon.jpg";
 import SearchIcon from '@mui/icons-material/Search';
 import "./specificpage.css";
 import { useParams} from "react-router-dom";
-import creed from './creed.jpg';
-import idiots from './idiots.jpg';
-import beast from './beast.jpg';
-import rrr from './rrr.jpg';
 import { Button } from "@mui/material";
 import { collection, query, where, getDoc,getDocs,getDocFromCache, doc } from "firebase/firestore";
 import db from "./firebase";
@@ -19,32 +15,6 @@ function Specific(){
     const Name=router.Specificid; 
    console.log(router.Specificid)
    console.log(Name)
-    const x=[
-        {
-            id:"a",
-            image:creed,
-            name:"Assasin's Creed",
-            message:"Play now"
-        },
-        {
-            id:"a",
-            image:beast,
-            name:"BEAST",
-            message:"Play now"
-        },
-        {
-            id:"b",
-            image:idiots,
-            name:"3IDIOTS",
-            message:"Play now"
-        },
-        {
-            id:"c",
-            image:rrr,
-            name:"RRR",
-            message:"Play now"
-        },
-    ]
 
 useEffect(()=>{
     const docRef=doc(db,"movie", Name)
@@ -87,7 +57,6 @@ useEffect(()=>{
            </div>
             </div>
             <hr size="2" width="auto" color=" green" /> 
-            {/* <hr size="2" width="auto" color="rgb(37 211 102)" />  */}
             </div>
             <br/>
 
