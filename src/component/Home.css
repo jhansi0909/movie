@@ -59,7 +59,8 @@
     justify-content: center;
 }
 .playnow{
-    font-size: large;
+font-size: large;
 font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 color: rgb(25, 168, 161) ;
+cursor: pointer;
 }
