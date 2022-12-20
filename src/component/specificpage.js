@@ -75,6 +75,7 @@ useEffect(()=>{
     return(
         // <div>helloo</div>
         <div>
+            <div className="navbar1">
          <div className="navbar">
             <img className="icon" src={icon}></img>
            <div className="rightsidenames">
@@ -86,11 +87,13 @@ useEffect(()=>{
            </div>
             </div>
             <hr size="2" width="auto" color=" green" /> 
-            <hr size="2" width="auto" color="rgb(37 211 102)" /> 
-            <div>
+            {/* <hr size="2" width="auto" color="rgb(37 211 102)" />  */}
+            </div>
+            <br/>
+
+
+            <div className="main">
                 {
-                    // movie.map((data)=>{
-                        // return(
                             <div>
                             <div className="page">
                 <div className="continer"><img className="images" src={movie.image}></img></div>

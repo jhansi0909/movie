@@ -1,9 +1,16 @@
 .navbar{
     height: 30px;
-    width: auto;
+    width: 100%;
     display: flex;
     justify-content: space-around;
     padding: 10px;
+    background-color: whitesmoke;
+    /* position: fixed; */
+}
+.navbar1{
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 .rightsidenames{
     display:flex;
@@ -17,6 +24,8 @@
 .menuicon{
     display: flex;
     gap: 3px;
+    position: fixed;
+    top: 0;
 }
 .home{
     color: rgb(25, 168, 161);
