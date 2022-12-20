@@ -11,7 +11,8 @@ function App() {
       <Route path='/' element={<Login></Login>}></Route>
       <Route path='Login' element={<Login></Login>}></Route>
       <Route path='Home' element={<Home></Home>}></Route>
-      <Route path='Specific' element={<Specific></Specific>}></Route>
+      <Route path='Specific/:Specificid' element={<Specific></Specific>}></Route>
+      {/* <Route path='Specific' element={<Specific></Specific>}></Route> */}
     </Routes>
   );
 };

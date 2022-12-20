@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import "./Home.css";
-// import icon from "./icon.jpg";
+import firebase from "./firebase";
 import icon from "./icon.jpg";
 import SearchIcon from '@mui/icons-material/Search';
 import creed from './creed.jpg';
@@ -13,68 +13,38 @@ import sarkar from './sarkar.jpg';
 import dracula from './dracula.jpg';
 import transformers from './transformers.jpg';
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router";
-function Home(){
-    const navigate=useNavigate()
-    const x=[
-        {
-            id:"a",
-            image:creed,
-            name:"Assasin's Creed",
-            message:"Play now"
-        },
-        {
-            id:"a",
-            image:beast,
-            name:"BEAST",
-            message:"Play now"
-        },
-        {
-            id:"b",
-            image:idiots,
-            name:"3IDIOTS",
-            message:"Play now"
-        },
-        {
-            id:"c",
-            image:rrr,
-            name:"RRR",
-            message:"Play now"
-        },
-        {
-            id:"d",
-            image:wilddog,
-            name:"Wild DOg",
-            message:"Play now"
-        },
-        {
-            id:"e",
-            image:bhahubali,
-            name:"Bahubali",
-            message:"Play now"
-        },
-        {
-            id:"f",
-            image:sarkar,
-            name:"Sarkar",
-            message:"Play now"
-        },
-        {
+import { useNavigate,useParams } from "react-router";
+import db from "./firebase";
+// import {db} from "./firebase.js"
+// import { doc, getDoc, getFirestore,ref,dbRef } from "firebase/firestore";
+import { collection, query, where, getDocs, doc } from "firebase/firestore";
+import { async } from "@firebase/util";
+// import { ref, set } from "firebase/firestore";
+ function Home(){
+    const navigate=useNavigate(); 
+ 
 
-            id:"g",
-            image:dracula,
-            name:"Dracula",
-            message:"Play now"
-        },
-        {
-            id:"h",
-            image:transformers,
-            name:"Transformers",
-            message:"Play now"
-        },
-    ]
-    function playnow(){
-        navigate("/Specific")
+    const [movie,setMovies]=useState([]);
+   
+  
+
+    useEffect(()=>{
+      ;(async()=>{
+        const q=collection(db,"movie")
+        const snapshot=await getDocs(q)
+        const docs=snapshot.docs.map(doc=>{
+        const data=doc.data()
+        data.id=doc.id
+        return data
+        })
+        setMovies(docs)
+        console.log(docs)
+      })();
+    },[]);
+    
+    function playnow(obj){
+        navigate("/Specific/"+obj.id)
+        console.log("heloo")
     }
     return(
         <div>
@@ -91,14 +61,19 @@ function Home(){
             <hr size="2" width="auto" color=" green" /> 
             <hr size="2" width="auto" color="rgb(37 211 102)" /> 
             <div className="mainone">
+          
           {
-            x.map((data)=>{
+            movie.map((data)=>{
               return(
              <div>
                 <div><img className="images" src={data.image}></img>
                 </div>
                 <div className="name">{data.name}</div>
-                <div onClick={playnow} className="message">{data.message} </div>
+                <div>
+                  <div className="playnow" onClick={()=>{
+                  playnow(data)
+                }} >Playnow</div>
+                </div>
              </div>
               )
             })

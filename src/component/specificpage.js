@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import icon from "./icon.jpg";
 import SearchIcon from '@mui/icons-material/Search';
 import "./specificpage.css";
-import sarkar from './sarkar.jpg';
+import { useParams} from "react-router-dom";
 import creed from './creed.jpg';
 import idiots from './idiots.jpg';
 import beast from './beast.jpg';
 import rrr from './rrr.jpg';
 import { Button } from "@mui/material";
-function specific(){
+import { collection, query, where, getDoc,getDocs,getDocFromCache, doc } from "firebase/firestore";
+import db from "./firebase";
+import { async } from "@firebase/util";
+
+function Specific(){
+    const [movie,setMovies]=useState([]);
+    const [data,setData]=useState([])
+    const router=useParams();
+    const Name=router.Specificid; 
+   console.log(router.Specificid)
+   console.log(Name)
     const x=[
         {
             id:"a",
@@ -35,7 +45,35 @@ function specific(){
             message:"Play now"
         },
     ]
+
+useEffect(()=>{
+    const docRef=doc(db,"movie", Name)
+    getDoc(docRef)
+    .then((doc)=>{
+        console.log(doc.data(),doc.id)
+       const data=doc.data()
+       setMovies(data)
+    })  
+    console.log(movie)
+  
+},[])
+
+useEffect(()=>{
+    ;(async()=>{
+      const q=collection(db,"movie")
+      const snapshot=await getDocs(q)
+      const docs=snapshot.docs.map(doc=>{
+      const data=doc.data()
+      data.id=doc.id
+      return data
+      })
+      setData(docs)
+      console.log(docs)
+    })();
+  },[]);
+
     return(
+        // <div>helloo</div>
         <div>
          <div className="navbar">
             <img className="icon" src={icon}></img>
@@ -50,9 +88,14 @@ function specific(){
             <hr size="2" width="auto" color=" green" /> 
             <hr size="2" width="auto" color="rgb(37 211 102)" /> 
             <div>
-                <div className="page">
-                <div className="continer"><img src={sarkar}></img></div>
-                <div><h3>SARKAR</h3>
+                {
+                    // movie.map((data)=>{
+                        // return(
+                            <div>
+                            <div className="page">
+                <div className="continer"><img className="images" src={movie.image}></img></div>
+                <div>
+                    <h3>{movie.name}</h3>
                 <div>Action</div>
                 <div>Duration : 1:50 hr</div>
                 <div className="buttons">
@@ -62,32 +105,27 @@ function specific(){
                  </div>
                 </div>
                 <div className="page">
-                Sarkar Review: In a scene after Sarkar’s protagonist Sundar Ramasamy announces his candidature, he addresses the residents of a colony.
-                 The first question thrown at the wealthy corporate honcho is whether he knows the price of tomatoes today.
-                  While he admits his ignorance, he uses it to narrate economics, explain how it affects the financial status of
-                   the people and finally sways the people to his side...<br/>
-                   For the large part of the movie, director AR Muragadoss tries to establish that politics is not much different from business,
-                    and Sundar, played effectively by Vijay, keeps pointing out how marketing, branding and strategising would help not only win 
-                    the support of the people but also change the corrupt system...
+               {movie.description}
                 </div>
-                <div className="pages">
-                    <h3 className="color">Similar movies</h3>
-                    <div className="movies">
-                  {
-                    x.map((data)=>{
-                        return(
-                            <div>
-                            <img className="image" src={data.image}></img>
-                            <div className="name">{data.name} </div>
-                            <div className="message">{data.message} </div>
+                </div>
+                }
+               <div className="pages">Similar movies</div>
+               <div className="movies">
+                {
+                    data.map((x)=>{
+
+                       return(
+                        <div >
+                        <div><img className="image" src={x.image}></img> </div>
+                        <div className="name">{x.name} </div>
+                        <div className="playnow">Playnow</div>
                         </div>
-                        )
+                       )
                     })
-                  }
-                    </div>
-                </div>
+                }
+               </div>
             </div>
         </div>
     )
 }
-export default specific;
+export default Specific;

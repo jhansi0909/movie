@@ -15,16 +15,27 @@
     color: rgb(25, 168, 161);
 }
 .movies{
+    width: 60%;
     display: flex;
-    /* gap: 10px; */
     justify-content: space-between;
+    /* background-color: aqua; */
+    margin: 20px auto;
+    flex-wrap: wrap;
 }
 .pages{
     width: 60%;
     margin: 20px auto;
-    /* background-color: antiquewhite; */
+    color:rgb(25, 168, 161) ;
+    font-size: large;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 .image{
     width: 200px;
     height: 150px;
+}
+.container{
+    background-color: blue;
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
 }

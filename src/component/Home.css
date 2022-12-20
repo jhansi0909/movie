@@ -44,12 +44,13 @@
     font-size: large;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
-.message{
-font-size: large;
-font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-color: rgb(25, 168, 161) ;
-}
+
 .button{
     display: flex;
     justify-content: center;
+}
+.playnow{
+    font-size: large;
+font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+color: rgb(25, 168, 161) ;
 }
